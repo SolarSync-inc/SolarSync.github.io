@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarSync — Hogar Inteligente</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-600-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-700-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-800-normal.css">
+<style>
+  :root{
+    --verde:#2e9e5b;
+    --verde-osc:#1c7a43;
+    --amarillo:#f5d327;
+    --azul:#0d3b66;
+    --fondo:#f4faf6;
+    --texto:#22333f;
+    --blanco:#ffffff;
+    --sombra:0 12px 30px rgba(13,59,102,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:var(--fondo);
+    color:var(--texto);
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:linear-gradient(90deg,var(--verde) 0%,#57b96b 55%,var(--amarillo) 130%);
+    box-shadow:0 4px 18px rgba(0,0,0,.15);
+  }
+  .nav{
+    max-width:1150px;margin:auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 24px;gap:16px;flex-wrap:wrap;
+  }
+  .marca{display:flex;align-items:center;gap:12px;}
+  .marca img{
+    width:52px;height:52px;object-fit:contain;border-radius:50%;
+    background:var(--blanco);padding:3px;box-shadow:0 4px 10px rgba(0,0,0,.18);
+    transition:transform .4s ease;
+  }
+  .marca:hover img{transform:rotate(12deg) scale(1.08);}
+  .marca span{
+    font-size:1.5rem;font-weight:800;color:var(--blanco);
+    letter-spacing:.5px;text-shadow:0 2px 6px rgba(0,0,0,.25);
+  }
+  nav ul{display:flex;gap:6px;list-style:none;flex-wrap:wrap;}
+  nav a{
+    color:var(--blanco);text-decoration:none;font-weight:600;font-size:.92rem;
+    padding:8px 14px;border-radius:999px;transition:.3s;
+  }
+  nav a:hover{background:rgba(255,255,255,.25);transform:translateY(-2px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(135deg,var(--azul) 0%,#14608f 45%,var(--verde) 100%);
+    color:var(--blanco);
+    overflow:hidden;
+  }
+  .hero::before,.hero::after{
+    content:"";position:absolute;border-radius:50%;
+    background:radial-gradient(circle,rgba(245,211,39,.55),rgba(245,211,39,0) 70%);
+    animation:brillo 6s ease-in-out infinite alternate;
+  }
+  .hero::before{width:420px;height:420px;top:-140px;right:-100px;}
+  .hero::after{width:300px;height:300px;bottom:-120px;left:-80px;animation-delay:2s;}
+  @keyframes brillo{from{transform:scale(1);opacity:.7;}to{transform:scale(1.25);opacity:1;}}
+  .hero-inner{
+    max-width:1150px;margin:auto;padding:70px 24px 80px;
+    display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;
+    position:relative;z-index:2;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.15;
+    text-shadow:0 3px 12px rgba(0,0,0,.3);
+    animation:subir .9s ease both;
+  }
+  .hero .lema{
+    display:inline-block;margin-top:14px;
+    font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:700;color:var(--amarillo);
+    letter-spacing:2px;text-transform:uppercase;
+    animation:subir .9s .25s ease both;
+  }
+  .hero .lema::after{
+    content:"";display:block;height:4px;width:70px;margin-top:8px;border-radius:4px;
+    background:linear-gradient(90deg,var(--amarillo),var(--verde));
+  }
+  .hero img{
+    width:100%;border-radius:22px;box-shadow:0 22px 45px rgba(0,0,0,.35);
+    animation:flotar 5s ease-in-out infinite;
+  }
+  @keyframes flotar{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+  @keyframes subir{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ---------- SECCIONES ---------- */
+  main{max-width:1000px;margin:auto;padding:60px 24px 30px;}
+  .tarjeta{
+    background:var(--blanco);border-radius:20px;box-shadow:var(--sombra);
+    padding:38px 42px;margin-bottom:34px;position:relative;overflow:hidden;
+    border-top:6px solid var(--verde);
+    opacity:0;transform:translateY(34px);
+    animation:subir .8s ease forwards;
+  }
+  .tarjeta:nth-of-type(1){animation-delay:.15s;}
+  .tarjeta:nth-of-type(2){animation-delay:.30s;}
+  .tarjeta:nth-of-type(3){animation-delay:.45s;}
+  .tarjeta:nth-of-type(4){animation-delay:.60s;}
+  .tarjeta:nth-of-type(5){animation-delay:.75s;}
+  .tarjeta::before{
+    content:"";position:absolute;top:0;left:0;width:100%;height:6px;
+    background:linear-gradient(90deg,var(--verde),var(--amarillo));
+  }
+  .tarjeta:hover{box-shadow:0 18px 40px rgba(13,59,102,.2);}
+  .tarjeta h2{
+    font-size:1.7rem;font-weight:800;color:var(--verde-osc);
+    text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .tarjeta h2::before{
+    content:"";width:14px;height:34px;border-radius:6px;flex:0 0 auto;
+    background:linear-gradient(180deg,var(--amarillo),var(--verde));
+  }
+  .tarjeta p{font-size:1.02rem;text-align:justify;}
+  .intro p{font-size:1.08rem;}
+
+  ol.objetivos{list-style:none;counter-reset:obj;margin-top:6px;}
+  ol.objetivos li{
+    counter-increment:obj;position:relative;
+    padding:16px 20px 16px 66px;margin-bottom:14px;
+    background:linear-gradient(90deg,#eef8f1,#ffffff);
+    border-left:4px solid var(--verde);border-radius:12px;
+    transition:.3s;text-align:justify;
+  }
+  ol.objetivos li:hover{transform:translateX(8px);box-shadow:var(--sombra);border-left-color:var(--amarillo);}
+  ol.objetivos li::before{
+    content:counter(obj);position:absolute;left:16px;top:50%;transform:translateY(-50%);
+    width:36px;height:36px;border-radius:50%;
+    background:linear-gradient(135deg,var(--verde),var(--amarillo));
+    color:var(--blanco);font-weight:800;font-size:1.05rem;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 10px rgba(46,158,91,.4);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top:40px;
+    background:linear-gradient(90deg,var(--verde) 0%,#57b96b 60%,var(--amarillo) 140%);
+    color:var(--blanco);text-align:center;padding:34px 20px;
+  }
+  footer .pie-marca{font-size:1.6rem;font-weight:800;letter-spacing:1px;text-shadow:0 2px 8px rgba(0,0,0,.25);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:860px){
+    .hero-inner{grid-template-columns:1fr;padding:50px 22px 60px;text-align:center;}
+    .hero .lema::after{margin:8px auto 0;}
+    .tarjeta{padding:30px 26px;}
+    nav ul{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="marca">
+      <img src="https://image.qwenlm.ai/public_source/9aaac500-97e2-48bc-b4f4-af956a7773d1/1d918ecc0-fb7c-4847-8a38-0fd1ab792e29.png" alt="Logo SolarSync">
+      <span>SolarSync</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#mision">Misión</a></li>
+        <li><a href="#vision">Visión</a></li>
+        <li><a href="#objetivo">Objetivo</a></li>
+        <li><a href="#objetivos-especificos">Objetivos Específicos</a></li>
+        <li><a href="#contacto">contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Hogar Inteligente</h1>
+      <span class="lema">Energía Sin Límites</span>
+    </div>
+    <img src="https://image.qwenlm.ai/public_source/9aaac500-97e2-48bc-b4f4-af956a7773d1/1e47ef459-d104-421d-8dbf-64deea536c89.png" alt="Casa inteligente con paneles solares">
+  </div>
+</section>
+
+<main>
+
+  <section class="tarjeta intro">
+    <p>En SolarSync nos dedicamos al diseño y desarrollo de soluciones de domótica con energía solar y transferencia eléctrica automática, ofreciendo sistemas inteligentes, seguros y sostenibles que optimizan el consumo de energía, mejoran la calidad de vida de los usuarios y contribuyen a la protección del medio ambiente mediante el uso de tecnologías innovadoras.</p>
+  </section>
+
+  <section class="tarjeta" id="mision">
+    <h2>Misión</h2>
+    <p>En SolarSync nos dedicamos al diseño y desarrollo de soluciones de domótica con energía solar y transferencia eléctrica automática, ofreciendo sistemas inteligentes, seguros y sostenibles que optimizan el consumo de energía, mejoran la calidad de vida de los usuarios y contribuyen a la protección del medio ambiente mediante el uso de tecnologías innovadoras.</p>
+  </section>
+
+  <section class="tarjeta" id="vision">
+    <h2>Visión</h2>
+    <p>Para el año 2030, SolarSync será una empresa reconocida por el desarrollo de soluciones innovadoras en domótica y energías renovables, destacándose por la implementación de sistemas inteligentes con energía solar y transferencia eléctrica automática, contribuyendo al ahorro energético, la sostenibilidad ambiental y el bienestar de los hogares en Colombia.</p>
+  </section>
+
+  <section class="tarjeta" id="objetivo">
+    <h2>Objetivo</h2>
+    <p>Diseñar e implementar un prototipo de una casa inteligente de un solo piso que utilice paneles solares, transferencia eléctrica automática y cinco bombillos inteligentes, con el fin de promover el ahorro de energía, la sostenibilidad y el uso de tecnologías innovadoras en los hogares.</p>
+  </section>
+
+  <section class="tarjeta" id="objetivos-especificos">
+    <h2>Objetivos Específicos</h2>
+    <ol class="objetivos">
+      <li>Diseñar una maqueta funcional que represente una vivienda inteligente equipada con paneles solares y sistemas de domótica.</li>
+      <li>Implementar un sistema de transferencia eléctrica automática que garantice el suministro continuo de energía cuando la energía solar no sea suficiente</li>
+      <li>Integrar cinco bombillos inteligentes para demostrar el control eficiente de la iluminación y la reducción del consumo eléctrico.</li>
+      <li>Demostrar los beneficios del uso de energías renovables y la automatización del hogar mediante el funcionamiento del prototipo, destacando su impacto económico y ambiental.</li>
+    </ol>
+  </section>
+  <section class="tarjeta" id="contacto">
+    <h2>contacto</h2>
+    <p>tel: +57 3219352418</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="pie-marca">SolarSync</div>
+</footer>
+
+</body>
+</html>
